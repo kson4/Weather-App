@@ -1,3 +1,4 @@
+let container = document.getElementsByClassName("top");
 let weatherIcon = document.getElementsByClassName("weather-icon");
 let weatherDescription = document.getElementsByClassName("weather-description");
 let weatherLocation = document.getElementsByClassName("weather-location");
@@ -7,7 +8,6 @@ let latitude = document.getElementsByClassName("latitude");
 let humidity = document.getElementsByClassName("humidity-text");
 let windSpeed = document.getElementsByClassName("wind-speed-text");
 
-
 async function weather() {
     const response = await fetch("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=703187020dd586d7b25f60630a84f32e", { mode: "cors" });
     const weatherData = await response.json();
@@ -16,9 +16,11 @@ async function weather() {
     // get the correct weather icon to display
     if (weatherData.weather[0].main === "Clear") {
         weatherIcon[0].src = "img/sun.png";
+        document.body.style.backgroundImage = "url('img/sunny-background.jpg')";
     }
     else if (weatherData.weather[0].main === "Clouds") {
         weatherIcon[0].src = "img/cloud.png";
+        document.body.style.backgroundImage = "url('img/cloudy-background.jpg')";
     }
 
     // get the weather description
